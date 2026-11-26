@@ -380,17 +380,19 @@ def draw_robot(cv, cx, top):
         cv.disc(ex, top + 76, 24, EYE_GLOW)
         cv.disc(ex, top + 76, 17, EYE_RED)
         cv.disc(ex - 5, top + 70, 5, WHITE)
-    # one raised eyebrow (the smug one)
+    # one raised eyebrow (the smug one) — the right one arched higher
     cv.line(cx - 82, top + 38, cx - 34, top + 30, METAL_EDGE, 5)
-    cv.line(cx + 34, top + 44, cx + 82, top + 40, METAL_EDGE, 5)
-    # sly grin: an asymmetric smirk
+    cv.line(cx + 34, top + 42, cx + 78, top + 26, METAL_EDGE, 6)
+    # sly grin: an asymmetric smirk, right corner kicked up
     pts = []
     for i in range(25):
         f = i / 24.0
         px = cx - 62 + f * 124
-        py = top + 128 + math.sin(f * math.pi) * 10 + f * 8
+        py = top + 128 + math.sin(f * math.pi) * 8 + f * f * 16
         pts.append((px, py))
     cv.polyline(pts, METAL_EDGE, 5)
+    # smirk dimple at the kicked-up corner
+    cv.disc(cx + 66, top + 140, 4, METAL_EDGE)
     # shoulders + chest panel
     rounded_rect(cv, cx - 168, top + 186, 336, 58, 18, METAL_DARK)
     cv.rect(cx - 168, top + 186, 336, 58, METAL_EDGE, 3)
